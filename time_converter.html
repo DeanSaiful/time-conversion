@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Time Converter</title>
+</head>
+<body>
+  <h1>Time Converter</h1>
+
+  <form id="timeConverterForm">
+    <label for="hoursInput">Hours:</label>
+    <input type="text" id="hoursInput">
+
+    <label for="minutesInput">Minutes:</label>
+    <input type="text" id="minutesInput">
+
+    <label for="secondsInput">Seconds:</label>
+    <input type="text" id="secondsInput">
+
+    <button type="submit">Convert</button>
+  </form>
+
+  <div id="conversionResult"></div>
+
+  <script>
+    const form = document.getElementById("timeConverterForm");
+    const resultDiv = document.getElementById("conversionResult");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      const hours = parseFloat(document.getElementById("hoursInput").value) || 0;
+      const minutes = parseFloat(document.getElementById("minutesInput").value) || 0;
+      const seconds = parseFloat(document.getElementById("secondsInput").value) || 0;
+
+      // Calculate the total time in hours
+      const totalHours = hours + minutes / 60 + seconds / 3600;
+
+      // Convert hours to minutes and seconds
+      const totalMinutes = totalHours * 60;
+      const totalSeconds = totalHours * 3600;
+
+      // Display the sum of the entered time values
+      resultDiv.innerHTML = `<p>Sum of time:</p>`;
+      resultDiv.innerHTML += `<p>${hours} hours + ${minutes} minutes + ${seconds} seconds = ${totalHours.toFixed(2)} hours</p>`;
+
+      // Display the conversion results
+      resultDiv.innerHTML += `<p>Converted time:</p>`;
+      resultDiv.innerHTML += `${totalHours.toFixed(2)} hours = ${totalMinutes} minutes = ${totalSeconds} seconds</p>`;
+    });
+  </script>
+</body>
+</html>
